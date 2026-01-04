@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>PROJECT_01</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0 10px 40px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
+
+  background-image: https://wallpaper.dog/large/20372204.jpg("bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+   <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>project_01</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0 10px 40px;
+      min-height: 100vh;
+      background-image: url("https://static.vecteezy.com/system/resources/previews/001/882/531/original/dark-blue-technology-background-free-vector.jpg");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #f5f5f5;
+    }
+
+    h1 {
+      margin-top: 30px;
+      font-size: 1.9rem;
+      color: #f4c430;
+    }
+
+    .relay-card {
+      background: rgba(10, 25, 60, 0.9);
+      padding: 18px;
+      margin: 12px;
+      border-radius: 14px;
+      width: 210px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+    }
+
+    .relay-card h2 {
+      font-size: 1.1rem;
+      color: #f4c430;
+      margin-bottom: 6px;
+    }
+
+    .relay-card p {
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+
+    .relay-card button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      width: 90%;
+    }
+
+    #allOffBtn, #logoutBtn {
+      max-width: 260px;
+      width: 90%;
+      padding: 10px;
+      font-size: 15px;
+      border: none;
+      border-radius: 10px;
+      margin: 12px auto;
+      display: block;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    #allOffBtn { background-color: #b71c1c; }
+    #logoutBtn { background-color: #1a237e; }
+
+    #loginForm {
+      max-width: 360px;
+      margin: 80px auto;
+      background: rgba(10, 25, 60, 0.95);
+      padding: 28px;
+      border-radius: 15px;
+    }
+
+    #loginForm input {
+      width: 100%;
+      padding: 11px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: none;
+      font-size: 15px;
+    }
+
+    #loginForm button {
+      width: 100%;
+      padding: 11px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+      background-color: #f4c430;
+      cursor: pointer;
+    }
+
+    #dashboard { display: none; }
+
+    .relay-container {
+      max-width: 800px;
+      margin: 20px auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    footer {
+      font-size: 0.85rem;
+      color: #ccc;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>project_01</h1>
+
+<div id="loginForm">
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Password">
+  <button id="loginBtn">Login</button>
+</div>
+
+<div id="dashboard">
+  <div class="relay-container">
+
+    <div class="relay-card">
+      <h2>Door Lock</h2>
+      <p>Status: <span id="status1">--</span></p>
+      <button id="btn1">Toggle</button>
+    </div>
+
+    <div class="relay-card">
+      <h2>Door Unlock</h2>
+      <p>Status: <span id="status2">--</span></p>
+      <button id="btn2">Toggle</button>
+    </div>
+
+    <div class="relay-card">
+      <h2>Light 01</h2>
+      <p>Status: <span id="status3">--</span></p>
+      <button id="btn3">Toggle</button>
+    </div>
+
+  </div>
+
+  <button id="allOffBtn">All OFF</button>
+  <button id="logoutBtn">Logout</button>
+</div>
+
+<footer>Created by CHANAKA</footer>
+
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+     apiKey: "AIzaSyAUR_NI2_LRQjH1AUSJX5qelLjWP69_KS0",
+  authDomain: "project-1-316c2.firebaseapp.com",
+  databaseURL: "https://project-1-316c2-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "project-1-316c2",
+  storageBucket: "project-1-316c2.firebasestorage.app",
+  messagingSenderId: "1005370661910",
+  appId: "1:1005370661910:web:12e1441f1b07b1eb2ae937"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+
+  const allowedEmail = "airroled@gmail.com";
+  const allowedPassword = "chanu00134";
+
+  document.getElementById("loginBtn").onclick = () => {
+    if (email.value === allowedEmail && password.value === allowedPassword) {
+      firebase.auth().signInWithEmailAndPassword(email.value, password.value)
+        .then(() => {
+          loginForm.style.display = "none";
+          dashboard.style.display = "block";
+          startRelayControl();
+        });
+    } else alert("Invalid login");
+  };
+
+  function startRelayControl() {
+    const db = firebase.database();
+    const relays = ["relay1", "relay2", "relay3"];
+
+    relays.forEach((r, i) => {
+      const status = document.getElementById(`status${i+1}`);
+      const btn = document.getElementById(`btn${i+1}`);
+      const ref = db.ref(r);
+
+      ref.on("value", s => {
+        const state = s.val();
+        status.innerText = state ? "ON" : "OFF";
+        btn.style.backgroundColor = state ? "#f4c430" : "#1a237e";
+        btn.style.color = state ? "#000" : "#fff";
+      });
+
+      btn.onclick = () => ref.get().then(v => ref.set(!v.val()));
+    });
+
+    allOffBtn.onclick = () => relays.forEach(r => db.ref(r).set(false));
+  }
+
+  logoutBtn.onclick = () => firebase.auth().signOut().then(() => location.reload());
+</script>
+
+</body>
+</html>
